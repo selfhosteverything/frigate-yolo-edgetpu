@@ -1,5 +1,6 @@
 # frigate-yolo-edgetpu
 Patch Frigate edgetpu_tfl.py to use YOLOv8 with edgetpu
+
 Blog post: https://selfhosteverything.xyz/yolov8-coral-edgetpu-frigate/
 
 # Using it
@@ -22,3 +23,7 @@ model:
   height: 320
 ```
 
+# Tested working as of 23/5/2025
+Version:
+- 0.15.1
+- 0.16.0 Beta 2
