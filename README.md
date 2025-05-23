@@ -27,4 +27,4 @@ model:
 Frigate Version:
 - 0.16.0 Beta 2
 
-# Also included the script and notebook code to export yolo model file .pt into edgetpu tflite
+*Also included the script and notebook code to export yolo model file .pt into edgetpu tflite
