@@ -8,7 +8,6 @@ from typing_extensions import Literal
 
 from frigate.detectors.detection_api import DetectionApi
 from frigate.detectors.detector_config import BaseDetectorConfig, ModelTypeEnum
-from frigate.util.model import post_process_yolo
 
 try:
     from tflite_runtime.interpreter import Interpreter, load_delegate
@@ -80,7 +79,7 @@ class EdgeTpuTfl(DetectionApi):
         logger.info(f"Model input shape: {input_shape}")
         logger.info(f"Model output details: {self.tensor_output_details}")
 
-    def process_yolov8_output(self, output_tensor):
+    def process_yolo_output(self, output_tensor):
         # Get quantization parameters
         output_details = self.tensor_output_details[0]
         scale, zero_point = output_details['quantization']
@@ -193,7 +192,7 @@ class EdgeTpuTfl(DetectionApi):
             # For YOLO models, we expect a single output tensor
             output_tensor = self.interpreter.tensor(self.tensor_output_details[0]["index"])()
             logger.debug(f"YOLO output tensor shape: {output_tensor.shape}")
-            return self.process_yolov8_output(output_tensor)
+            return self.process_yolo_output(output_tensor)
         else:
             # For other models (like SSD), use the existing detection logic
             try:
